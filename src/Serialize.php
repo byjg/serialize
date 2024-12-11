@@ -70,31 +70,31 @@ class Serialize
         return serialize($this->_model);
     }
 
-    public function toYaml(): string
+    public function toYaml(): string|bool
     {
         $yamlFormatter = new YamlFormatter();
         return $yamlFormatter->process($this->parseProperties($this->_model, 1));
     }
 
-    public function toJson(): string
+    public function toJson(): string|bool
     {
         $jsonFormatter = new JsonFormatter();
         return $jsonFormatter->process($this->parseProperties($this->_model, 1));
     }
 
-    public function toXml(): string
+    public function toXml(): string|bool
     {
         $xmlFormatter = new XmlFormatter();
         return $xmlFormatter->process($this->parseProperties($this->_model, 1));
     }
 
-    public function toPlainText(): string
+    public function toPlainText(): string|bool
     {
         $plainTextFormatter = new PlainTextFormatter();
         return $plainTextFormatter->process($this->parseProperties($this->_model, 1));
     }
 
-    public function parseAttributes(?Closure $attributeFunction, string $attributeClass = null): array
+    public function parseAttributes(?Closure $attributeFunction, ?string $attributeClass = null): array
     {
         return $this->parseProperties($this->_model, 1, $attributeClass, $attributeFunction);
     }
